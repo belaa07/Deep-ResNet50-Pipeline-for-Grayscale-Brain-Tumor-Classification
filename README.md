@@ -4,7 +4,18 @@ A TensorFlow/Keras pipeline for classifying brain tumor MRI scans into three typ
 
 ---
 
-## Project Structure
+## Dataset
+
+This project uses the **Figshare Brain Tumor Dataset**, originally created by **Jun Cheng**. It comprises 3,064 T1-weighted contrast-enhanced MRI slices collected from 233 patients, covering three tumor types: Meningioma, Glioma, and Pituitary.
+
+- **Source:** [https://figshare.com/articles/dataset/brain_tumor_dataset/1512427](https://figshare.com/articles/dataset/brain_tumor_dataset/1512427)
+- **Imaging modality:** T1-weighted contrast-enhanced MRI
+- **Patients:** 233
+- **Total slices:** 3,064
+
+If you use this dataset in your work, please cite the original creator:
+
+> Jun Cheng. (2017). *brain_tumor_dataset*. figshare. Dataset. https://doi.org/10.6084/m9.figshare.1512427
 
 ```
 project/
@@ -78,7 +89,7 @@ Splits are stratified by class label and seeded at `random_state=42` for reprodu
 
 Images are loaded on-the-fly using `np.load` wrapped in a `tf.py_function`, so the full dataset is never held in memory simultaneously. Each image is cast to `float32` with a fixed shape of `(512, 512, 1)`.
 
-### 3. Data Augmentation (training only)
+### 3. Data Augmentation 
 
 Applied after batching on the training set:
 
