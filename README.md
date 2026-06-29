@@ -23,7 +23,7 @@ project/
 │   ├── Meningioma/        # 708 .npy MRI arrays
 │   ├── Glioma/            # 1,426 .npy MRI arrays
 │   └── Pituitary/         # 930 .npy MRI arrays
-├── result/
+├── results/
 │   ├── confusion_matrix    # Saved confusion matrix plot
 │   └── result_csv          # accuracy and f1 scores
 └── brain_tumor_classification.ipynb   # Full pipeline notebook
