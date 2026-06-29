@@ -17,19 +17,40 @@ If you use this dataset in your work, please cite the original creator:
 
 > Jun Cheng. (2017). *brain_tumor_dataset*. figshare. Dataset. https://doi.org/10.6084/m9.figshare.1512427
 
+
+---
+## Project Structure
+
 ```
 project/
-├── dataset/
-│   ├── Meningioma/        # 708 .npy MRI arrays
-│   ├── Glioma/            # 1,426 .npy MRI arrays
-│   └── Pituitary/         # 930 .npy MRI arrays
-├── results/
+├── result/
 │   ├── confusion_matrix    # Saved confusion matrix plot
-│   └── result_csv          # accuracy and f1 scores
+│   └── result_csv          # acurracy and f1-scores
 └── brain_tumor_classification.ipynb   # Full pipeline notebook
 ```
 
-**Total dataset size:** 3,064 samples across 3 classes
+> **Note:** The `dataset/` folder is not included in this repository due to its large size. See the [Dataset Preparation](#dataset-preparation) section below for instructions on how to reconstruct it.
+
+---
+
+## Dataset Preparation
+
+The original Figshare dataset consists of `.png` MRI slices. These were preprocessed and converted to NumPy arrays before training:
+
+1. Each 512×512 PNG was loaded as a grayscale image
+2. Pixel values were cast to `float32`
+3. Each image was saved as an individual `.npy` file of shape `(512, 512, 1)`
+
+The resulting `dataset/` folder should have the following structure before running the notebook:
+
+```
+dataset/
+├── Meningioma/        # 708 .npy arrays   — shape (512, 512, 1), dtype float32
+├── Glioma/            # 1,426 .npy arrays — shape (512, 512, 1), dtype float32
+└── Pituitary/         # 930 .npy arrays   — shape (512, 512, 1), dtype float32
+```
+
+**Total:** 3,064 samples across 3 classes
 
 > **Class imbalance note:** Glioma (1,426) is ~2× more frequent than Meningioma (708). The stratified splitting strategy preserves this ratio across train/val/test sets.
 
